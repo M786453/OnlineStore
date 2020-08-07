@@ -36,7 +36,7 @@ class SignUp : AppCompatActivity() {
      }
 
     }
-    private fun showDialog(message:String){
+   private fun showDialog(message:String){
         val dialog = AlertDialog.Builder(this@SignUp)
         dialog.setTitle("Message")
         dialog.setMessage(message)

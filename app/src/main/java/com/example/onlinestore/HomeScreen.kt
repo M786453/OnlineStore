@@ -1,5 +1,6 @@
 package com.example.onlinestore
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -29,5 +30,11 @@ class HomeScreen : AppCompatActivity() {
             Toast.makeText(this@HomeScreen,error.message,Toast.LENGTH_SHORT).show()
         })
         requestQ.add(jAR)
+        brandListView.setOnItemClickListener { parent, view, position, id ->
+            var tappedBrand = brandList.get(position)
+            var intent = Intent(this@HomeScreen,Products::class.java)
+            intent.putExtra("BRAND",tappedBrand)
+            startActivity(intent)
+        }
     }
 }

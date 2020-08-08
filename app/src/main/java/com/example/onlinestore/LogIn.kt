@@ -25,6 +25,7 @@ class LogIn : AppCompatActivity() {
                 if (response.toString().equals("User does not exists.")){
                     showDialog(response)
                 }else{
+                    Person.email = edtLogInEmail.text.toString()
                     Toast.makeText(this@LogIn,response,Toast.LENGTH_SHORT).show()
                     transitionToAnotherActivity(HomeScreen::class.java)
                 }

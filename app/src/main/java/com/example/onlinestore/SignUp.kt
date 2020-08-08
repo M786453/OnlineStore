@@ -28,6 +28,7 @@ class SignUp : AppCompatActivity() {
                          if (response.toString().equals("A user with this email already exists!")){
                              showDialog(response)
                          }else{
+                             Person.email = edtSignUpEmail.text.toString()
                              Toast.makeText(this@SignUp,response, Toast.LENGTH_SHORT).show()
                              transitionToAnotherActivity(HomeScreen::class.java)
 

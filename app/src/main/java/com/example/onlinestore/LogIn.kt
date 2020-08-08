@@ -1,7 +1,9 @@
 package com.example.onlinestore
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -20,7 +22,14 @@ class LogIn : AppCompatActivity() {
                              edtLogInEmail.text.toString() + "&password="+edtLogInPassword.text.toString()
             val requestQ:RequestQueue = Volley.newRequestQueue(this@LogIn)
             val stringRequest = StringRequest(Request.Method.GET,serverUrl, Response.Listener { response ->
-                  showDialog(response)
+                if (response.toString().equals("User does not exists.")){
+                    showDialog(response)
+                }else{
+                    Toast.makeText(this@LogIn,response,Toast.LENGTH_SHORT).show()
+                    transitionToAnotherActivity(HomeScreen::class.java)
+                }
+
+
             },Response.ErrorListener { error ->
                 showDialog(error.message.toString())
             })
@@ -32,5 +41,9 @@ class LogIn : AppCompatActivity() {
         dialog.setTitle("Message")
         dialog.setMessage(message)
         dialog.create().show()
+    }
+    private fun transitionToAnotherActivity(anotherActivity:java.lang.Class<*>){
+        val transitionIntent= Intent(this@LogIn,anotherActivity)
+        startActivity(transitionIntent)
     }
 }

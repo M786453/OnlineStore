@@ -1,7 +1,9 @@
 package com.example.onlinestore
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -23,8 +25,14 @@ class SignUp : AppCompatActivity() {
                      "&password="+edtSignUpPassword.text.toString()
              val requestQ: RequestQueue = Volley.newRequestQueue(this@SignUp)
              val stringRequest = StringRequest(Request.Method.GET,serverUrl,Response.Listener { response ->
+                         if (response.toString().equals("A user with this email already exists!")){
+                             showDialog(response)
+                         }else{
+                             Toast.makeText(this@SignUp,response, Toast.LENGTH_SHORT).show()
+                             transitionToAnotherActivity(HomeScreen::class.java)
 
-                        showDialog(response)
+                         }
+
              },Response.ErrorListener { error ->
                     showDialog(error.message.toString())
              })
@@ -41,6 +49,10 @@ class SignUp : AppCompatActivity() {
         dialog.setTitle("Message")
         dialog.setMessage(message)
         dialog.create().show()
+    }
+    private fun transitionToAnotherActivity(anotherActivity:java.lang.Class<*>){
+        val transitionIntent= Intent(this@SignUp,anotherActivity)
+        startActivity(transitionIntent)
     }
     }
 

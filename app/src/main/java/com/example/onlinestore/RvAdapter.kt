@@ -1,9 +1,11 @@
 package com.example.onlinestore
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +26,13 @@ class RvAdapter(var context:Context,var arraylist :ArrayList<EProduct>):Recycler
         (holder as ProductViewHolder).initializeUiComponents(arraylist[position].pId,
             arraylist[position].pName,arraylist[position].pPrice,arraylist[position].pImage)
     }
-    inner class ProductViewHolder(myView:View):RecyclerView.ViewHolder(myView){
+    inner class ProductViewHolder(var myView:View):RecyclerView.ViewHolder(myView){
         var pIdTextView = myView.findViewById<TextView>(R.id.txtId)
         var pNameTextView = myView.findViewById<TextView>(R.id.txtName)
         var pPriceTextView = myView.findViewById<TextView>(R.id.txtPrice)
         var pImageView = myView.findViewById<ImageView>(R.id.imgProduct)
+        var pImgAdd = myView.findViewById<ImageView>(R.id.imgAdd)
+
         fun initializeUiComponents(productId:Int,productName:String,productPrice:Int,productImage:String){
             pIdTextView.text = "ID: "+ productId.toString()
             pNameTextView.text ="Name: " + productName
@@ -36,6 +40,11 @@ class RvAdapter(var context:Context,var arraylist :ArrayList<EProduct>):Recycler
             var picUrl = "http://192.168.10.4/OnlineStore/osimages/$productImage"
             picUrl = picUrl.replace(" ","%20")
             Picasso.get().load(picUrl).into(pImageView)
+            pImgAdd.setOnClickListener {
+             var fragmentDialogue = AmountFragment()
+                var fragmentManager = (myView.context as Activity).fragmentManager
+                fragmentDialogue.show(fragmentManager,"TAG")
+            }
         }
     }
 }

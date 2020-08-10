@@ -17,7 +17,7 @@ class HomeScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
-        val fetchBrandUrl = "http://192.168.10.4/OnlineStore/fetch_brands.php"
+        val fetchBrandUrl = "http://192.168.10.2/OnlineStore/fetch_brands.php"
         var brandList = ArrayList<String>()
         val requestQ: RequestQueue = Volley.newRequestQueue(this@HomeScreen)
         val jAR = JsonArrayRequest(Request.Method.GET,fetchBrandUrl,null,Response.Listener { response ->

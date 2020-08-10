@@ -37,9 +37,10 @@ class RvAdapter(var context:Context,var arraylist :ArrayList<EProduct>):Recycler
             pIdTextView.text = "ID: "+ productId.toString()
             pNameTextView.text ="Name: " + productName
             pPriceTextView.text ="Price: " + productPrice.toString()
-            var picUrl = "http://192.168.10.4/OnlineStore/osimages/$productImage"
+            var picUrl = "http://192.168.10.2/OnlineStore/osimages/$productImage"
             picUrl = picUrl.replace(" ","%20")
             Picasso.get().load(picUrl).into(pImageView)
+            Person.productId = productId
             pImgAdd.setOnClickListener {
              var fragmentDialogue = AmountFragment()
                 var fragmentManager = (myView.context as Activity).fragmentManager

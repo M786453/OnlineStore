@@ -18,7 +18,7 @@ class Products : AppCompatActivity() {
         setContentView(R.layout.activity_products)
         var tappedBrand = intent.getStringExtra("BRAND")
         var storeproductList = ArrayList<EProduct>()
-        val productsUrl = "http://192.168.10.4/OnlineStore/fetch_products.php?brand="+
+        val productsUrl = "http://192.168.10.2/OnlineStore/fetch_products.php?brand="+
                             tappedBrand
         val requestQ = Volley.newRequestQueue(this@Products)
         val jsonAR = JsonArrayRequest(Request.Method.GET,productsUrl,null,

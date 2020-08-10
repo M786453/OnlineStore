@@ -20,7 +20,7 @@ class SignUp : AppCompatActivity() {
      btnSignUp.setOnClickListener {
          if (edtSignUpPassword.text.toString().equals(edtSignUpConfirmPassword.text.toString())){
              //User Registration
-             val serverUrl = "http://192.168.10.4/OnlineStore/register_new_users.php?email=" +
+             val serverUrl = "http://192.168.10.2/OnlineStore/register_new_users.php?email=" +
                      edtSignUpEmail.text.toString() + "&username="+edtSignUpUsername.text.toString()+
                      "&password="+edtSignUpPassword.text.toString()
              val requestQ: RequestQueue = Volley.newRequestQueue(this@SignUp)

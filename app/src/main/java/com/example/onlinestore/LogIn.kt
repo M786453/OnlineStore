@@ -18,7 +18,7 @@ class LogIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
         btnLogIn.setOnClickListener {
-            val serverUrl = "http://192.168.10.4/OnlineStore/login_users.php?email="+
+            val serverUrl = "http://192.168.10.2/OnlineStore/login_users.php?email="+
                              edtLogInEmail.text.toString() + "&password="+edtLogInPassword.text.toString()
             val requestQ:RequestQueue = Volley.newRequestQueue(this@LogIn)
             val stringRequest = StringRequest(Request.Method.GET,serverUrl, Response.Listener { response ->
